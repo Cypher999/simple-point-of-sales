@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('pembelian', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('barang_id');
+            $table->foreign('barang_id')
+                  ->references('id')->on('barang')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->string('suplier',100);
+            $table->float('harga');
+            $table->integer('jumlah');
+            $table->dateTime('created_at');
         });
     }
 

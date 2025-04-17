@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('barang_id');
+            $table->foreign('barang_id')
+                  ->references('id')->on('barang')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->integer('jumlah');
+            $table->dateTime('created_at');
         });
     }
 

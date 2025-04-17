@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('pengeluaran', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('keterangan',255);
+            $table->float('harga');
+            $table->integer('jumlah');
+            $table->string('satuan',20);
+            $table->dateTime('created_at');
         });
     }
 

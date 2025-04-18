@@ -43,7 +43,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{url('admin')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -60,13 +60,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../charts/chartjs.html" class="nav-link">
+                <a href="{{url('admin/barang')}}" class="nav-link">
                 <i class="fas fa-box nav-icon"></i>
                   <p>Data Barang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../charts/flot.html" class="nav-link">
+                <a href="{{url('admin/user')}}" class="nav-link">
                 <i class="fas fa-user nav-icon"></i>
                   <p>Data User</p>
                 </a>
@@ -82,16 +82,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../charts/chartjs.html" class="nav-link">
-                <i class="fas fa-dollar-sign nav-icon"></i><i class="fas fa-arrow-up nav-icon"></i>
-                  <p>Data Penjualan</p>
+            <li class="nav-item">
+                <a href="{{url('admin/pengeluaran')}}" class="nav-link">
+                <i class="fas fa-dollar-sign nav-icon"></i>
+                  <p>Data Pengeluaran</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../charts/flot.html" class="nav-link">
-                <i class="fas fa-dollar-sign nav-icon"></i><i class="fas fa-arrow-down nav-icon"></i>
-                  <p>Data Pembelian</p>
+                <a href="{{url('admin/penjualan')}}" class="nav-link">
+                <i class="fas fa-truck nav-icon"></i>
+                  <p>Data Penjualan</p>
                 </a>
               </li>
             </ul>

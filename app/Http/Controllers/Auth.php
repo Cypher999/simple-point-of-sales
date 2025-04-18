@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Illuminate\Support\Facades\Response;
 use Validator;
 use Illuminate\Http\Request;
 
 class Auth extends Controller
 {
     public function index(){
-        return view('welcome');
+        return view('login');
     }
     public function login(Request $req){
         $validator = Validator::make($req->all(),[
@@ -19,23 +18,14 @@ class Auth extends Controller
           ]);
       
           if ($validator->fails()) {
-            return Response::json([
-              "status"=>'error',
-              "message"=>$validator->messages()]
-              ,502);
+            return redirect()->back()->withErrors($validator->messages());
           }
           $user = User::where('username', $req->username)->first();
           if (!$user) {
-            return Response::json([
-              "status"=>'error',
-              "message"=>"user not found"]
-              ,502);
+            return redirect()->back()->withErrors(["system"=>"user not found"]);
           }
           if (!Hash::check($req->password, $user->password)) {
-            return Response::json([
-                "status"=>'error',
-                "message"=>"incorrect password"]
-                ,502);
+            return redirect()->back()->withErrors(["system"=>"wrong password"]);
           }
           session()->put('session_poc',$user->getAuthIdentifier());
 

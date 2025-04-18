@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username',50)->unique();
             $table->string('password',150);
+            $table->string('photo',10)->default('man.jpg');
             $table->enum('role',['superadmin','admin gudang','admin penjualan']);
         });
     }

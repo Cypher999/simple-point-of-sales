@@ -1,4 +1,4 @@
-@extends('layout/app')
+@extends('layout.app')
 @section('navbar')
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -13,8 +13,8 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link d-flex align-items-center" data-toggle="dropdown" href="#">
-            <img src="{{url('img/hero.jpg')}}" class="brand-image img-circle elevation-3" style="width:35px;height:35px">
-            <span class="ml-2">Administrator</span>
+            <img src="{{url('img/'.$user->photo)}}" class="brand-image img-circle elevation-3" style="width:35px;height:35px">
+            <span class="ml-2">{{$user->username}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -102,4 +102,14 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+@endsection
+
+@section('wrapper')
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid pt-3">
+          @yield('content')
+        </div>
+    </section>
+</div>
 @endsection

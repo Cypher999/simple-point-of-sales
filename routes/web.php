@@ -13,6 +13,7 @@ Route::prefix('admin')->middleware(AdminFilter::class)->group(function(){
     Route::prefix('barang')->group(function(){
         Route::get('', [AdminBarang::class,'index']);
         Route::get('add', [AdminBarang::class,'formAdd']);
+        Route::post('add', [AdminBarang::class,'prosesAdd']);
         Route::get('edit/{id}', [AdminBarang::class,'formEdit']);
     });
     

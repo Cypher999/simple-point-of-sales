@@ -9,12 +9,7 @@
 <div class="wrapper">
     @yield('navbar')
     @yield('sidebar')
-    
-    <!-- <div class="content-wrapper"> -->
-        @yield('content')
-    <!-- </div> -->
-
-    @yield('footer')
+    @yield('wrapper')
 </div>
 </body>
 </html>

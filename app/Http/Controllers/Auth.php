@@ -28,7 +28,11 @@ class Auth extends Controller
             return redirect()->back()->withErrors(["system"=>"wrong password"]);
           }
           session()->put('session_poc',$user->getAuthIdentifier());
-
-          return Response::json(["status"=>'successs','message' => 'Login successful, redirecting']);
+          $redirect=[
+            "superadmin"=>"admin",
+            "admin gudang"=>"gudang",
+            "admin penjualan"=>"penjualan"
+          ];
+          return redirect()->to(url($redirect[$user->role]));
     }
 }

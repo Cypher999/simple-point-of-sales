@@ -4,7 +4,7 @@
   <div class="col-12">
     <div class="card overflow-auto">
       <div class="card-header">
-        <h3 class="card-title">Data Barang</h3>
+        <h3 class="card-title">Data Pembelian Barang</h3>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -18,34 +18,42 @@
                 {{ $message}}
             </div>
         @enderror
-        <a href="{{url('admin/barang/add')}}">
-          <button type="button" class="btn btn-block btn-outline-primary col-5 col-sm-3 col-md-2 mb-2">Tambah Data</button>
-        </a>
+        <div class="mb-2">
+          <div>Nama Barang</div>
+          <div class="text-lg fw-bold">{{$barang->nama}}</div>
+        </div>
+        <div class="row mb-2">
+          <a href="{{url('admin/pembelian/add',$barang->id)}}" class="d-block col-5 col-sm-3 col-md-2">
+            <button type="button" class="btn btn-block btn-outline-primary">Tambah Data</button>
+          </a>
+          <a href="{{url('admin/barang')}}" class="d-block col-5 col-sm-3 col-md-2">
+            <button type="button" class="btn btn-block btn-outline-warning">Kembali</button>
+          </a>
+        </div>
         <table id="example2" class="table table-bordered table-hover">
           <thead>
             <tr>
-                <th>Nama Barang</th>
+                <th>Nama Suplier</th>
                 <th>Harga</th>
-                <th>Stok</th>
+                <th>Jumlah Pembelian</th>
+                <th>Tanggal Pembelian</th>
                 <th>Kontrol</th>
             </tr>
           </thead>
           <tbody>
             @foreach($data as $d)
                 <tr>
-                    <td>{{$d->nama}}</td>
+                    <td>{{$d->suplier}}</td>
                     <td>{{$d->harga}}</td>
-                    <td>{{$d->stok}}</td>
+                    <td>{{$d->jumlah}}</td>
+                    <td>{{$d->created_at}}</td>
                     <td>
                       <div class="row">
-                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/barang/edit',$d->id)}}">
+                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/pembelian/edit',$d->id)}}">
                           <button type="button" class="btn btn-block btn-warning">Edit Data</button>
                         </a>
-                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/barang/remove',$d->id)}}">
+                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/pembelian/remove',$d->id)}}">
                           <button type="button" class="btn btn-block btn-danger">Hapus Data</button>
-                        </a>
-                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/pembelian',$d->id)}}">
-                          <button type="button" class="btn btn-block btn-success">Tambah stok</button>
                         </a>
                       </div>
                     </td>

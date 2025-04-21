@@ -18,6 +18,6 @@ class Dashboard extends Controller
             "pembelian"=>PembelianM::count(),
             "barang"=>BarangM::count(),
         ];
-        return view('admin/dashboard/index',compact('data'));
+        return view('admin.dashboard.index',compact('data'));
     }
 }

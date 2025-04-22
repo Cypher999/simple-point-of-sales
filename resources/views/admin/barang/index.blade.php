@@ -38,13 +38,13 @@
                     <td>{{$d->stok}}</td>
                     <td>
                       <div class="row">
-                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/barang/edit',$d->id)}}">
+                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/barang/edit',$d->id)}}">
                           <button type="button" class="btn btn-block btn-warning">Edit Data</button>
                         </a>
-                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/barang/remove',$d->id)}}">
+                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/barang/remove',$d->id)}}">
                           <button type="button" class="btn btn-block btn-danger">Hapus Data</button>
                         </a>
-                        <a class="m-2 col-10 col-md-5 col-lg-3 d-block" href="{{url('admin/pembelian',$d->id)}}">
+                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/pembelian',$d->id)}}">
                           <button type="button" class="btn btn-block btn-success">Tambah stok</button>
                         </a>
                       </div>

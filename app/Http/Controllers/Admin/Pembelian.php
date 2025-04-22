@@ -12,7 +12,7 @@ class Pembelian extends Controller
     public function index($barang_id){
         $barang=BarangM::find($barang_id);
         if(!$barang){
-          return redirect()->back()->withErrors(["system"=>"barang Tidak DItemukan"]);
+          return redirect()->back()->withErrors(["system"=>"barang Tidak Ditemukan"]);
         }
         $data=PembelianM::where('barang_id',$barang_id)->get();
         return view('admin.pembelian.index',compact('data','barang'));
@@ -20,14 +20,14 @@ class Pembelian extends Controller
     public function formAdd($barang_id){
         $data=BarangM::select('id','nama')->where('id',$barang_id)->first();
         if(!$data){
-          return redirect()->back()->withErrors(["system"=>"Data Tidak DItemukan"]);
+          return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
         }
         return view('admin.pembelian.add',compact('data'));
     }
     public function formEdit($id){
       $data=PembelianM::with('barang')->find($id);
       if(!$data){
-        return redirect()->back()->withErrors(["system"=>"Data Tidak DItemukan"]);
+        return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
       }
       return view('admin.pembelian.edit',compact('data'));
   }
@@ -83,11 +83,11 @@ class Pembelian extends Controller
     public function remove(Request $req,$id){
         $pembelian=PembelianM::find($id);
         if (!$pembelian) {
-          return redirect()->to(url("admin/stok"))->withErrors(["system"=>"data tidak ditemukan"]);
+          return redirect()->to(url('admin/pembelian/'.$pembelian->barang_id))->withErrors(["system"=>"data tidak Ditemukan"]);
         }
         $simpan=$pembelian->delete();
         if($simpan){
-          return redirect()->to('admin/stok')->with('success', 'pembelian berhasil dihapus');
+          return redirect()->to(url('admin/pembelian/'.$pembelian->barang_id))->with('success', 'pembelian berhasil dihapus');
         }
         
     }

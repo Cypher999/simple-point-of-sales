@@ -4,7 +4,7 @@
   <div class="col-12">
     <div class="card overflow-auto">
       <div class="card-header">
-        <h3 class="card-title">Data User</h3>
+        <h3 class="card-title">Data Pengeluaran</h3>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -18,31 +18,38 @@
                 {{ $message}}
             </div>
         @enderror
-        <a href="{{url('admin/user/add')}}">
-          <button type="button" class="btn btn-block btn-outline-primary col-5 col-sm-3 col-md-2 mb-2">Tambah Data</button>
-        </a>
+        <div class="row mb-2">
+          <a href="{{url('admin/pengeluaran/add')}}" class="d-block col-5 col-sm-3 col-md-2">
+            <button type="button" class="btn btn-block btn-outline-primary">Tambah Data</button>
+          </a>
+        </div>
         <table id="example2" class="table table-bordered table-hover">
           <thead>
             <tr>
-                <th>Username</th>
-                <th>Role</th>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Satuan</th>
+                <th>Total</th>
+                <th>Tanggal Penjualan</th>
                 <th>Kontrol</th>
             </tr>
           </thead>
           <tbody>
             @foreach($data as $d)
                 <tr>
-                    <td>{{$d->username}}</td>
-                    <td>{{$d->role}}</td>
+                    <td>{{$d->keterangan}}</td>
+                    <td>{{$d->jumlah}}</td>
+                    <td>{{$d->harga}}</td>
+                    <td>{{$d->satuan}}</td>
+                    <td>{{($d->jumlah*$d->harga)}}</td>
+                    <td>{{$d->created_at}}</td>
                     <td>
                       <div class="row">
-                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/user/edit-data',$d->id)}}">
+                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/pengeluaran/edit',$d->id)}}">
                           <button type="button" class="btn btn-block btn-warning">Edit Data</button>
                         </a>
-                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/user/edit-password',$d->id)}}">
-                          <button type="button" class="btn btn-block btn-warning">Edit Password</button>
-                        </a>
-                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/user/remove',$d->id)}}">
+                        <a class="m-2 col-10 col-md-5 d-block" href="{{url('admin/pengeluaran/remove',$d->id)}}">
                           <button type="button" class="btn btn-block btn-danger">Hapus Data</button>
                         </a>
                       </div>

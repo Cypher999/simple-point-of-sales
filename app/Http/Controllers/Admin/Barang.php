@@ -18,7 +18,7 @@ class Barang extends Controller
     public function formEdit($id){
       $data=BarangM::find($id);
       if(!$data){
-        return redirect()->back()->withErrors(["system"=>"Data Tidak DItemukan"]);
+        return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
       }
       return view('admin.barang.edit',compact('data'));
   }
@@ -58,7 +58,7 @@ class Barang extends Controller
         }
         $dataLama = BarangM::find($id);
         if (!$dataLama) {
-          return redirect()->to(url("admin.barang"))->withErrors(["system"=>"barang tidak ditemukan"]);
+          return redirect()->to(url("admin.barang"))->withErrors(["system"=>"barang tidak Ditemukan"]);
         }
         $cekBarang = BarangM::where('nama', $req->nama)->first();
         if (($cekBarang)&&($dataLama->nama!=$req->nama)) {
@@ -77,12 +77,12 @@ class Barang extends Controller
     public function remove(Request $req,$id){
         $barang=BarangM::find($id);
         if (!$barang) {
-          return redirect()->to(url("admin.barang"))->withErrors(["system"=>"barang tidak ditemukan"]);
+          return redirect()->to(url("admin.barang"))->withErrors(["system"=>"barang tidak Ditemukan"]);
         }
         
         $simpan=$barang->delete();
         if($simpan){
-          return redirect()->to('admin/barang')->with('success', 'barang berhasil dihapus');
+          return redirect()->to(url('admin/barang'))->with('success', 'barang berhasil dihapus');
         }
         
     }

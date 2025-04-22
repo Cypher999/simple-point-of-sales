@@ -35,4 +35,8 @@ class Auth extends Controller
           ];
           return redirect()->to(url($redirect[$user->role]));
     }
+    public function logout(Request $req){
+      $req->session()->forget('session_central_borneo');
+      return redirect('/');
+    }
 }

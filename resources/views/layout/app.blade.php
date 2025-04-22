@@ -11,7 +11,6 @@
     @yield('navbar')
     @yield('sidebar')
     @yield('wrapper')
-    
 </div>
 </body>
 </html>

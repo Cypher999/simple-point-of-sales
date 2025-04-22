@@ -20,14 +20,14 @@ class User extends Controller
     public function formEditData($id){
       $data=UserM::find($id);
       if(!$data){
-        return redirect()->back()->withErrors(["system"=>"Data Tidak DItemukan"]);
+        return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
       }
       return view('admin.user.editData',compact('data'));
     }
     public function formEditPassword($id){
         $data=UserM::find($id);
         if(!$data){
-          return redirect()->back()->withErrors(["system"=>"Data Tidak DItemukan"]);
+          return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
         }
         return view('admin.user.editPassword',compact('data'));
       }
@@ -75,7 +75,7 @@ class User extends Controller
         }
         $dataLama = UserM::find($id);
         if (!$dataLama) {
-          return redirect()->to(url("admin.user"))->withErrors(["system"=>"User tidak ditemukan"]);
+          return redirect()->to(url("admin/user"))->withErrors(["system"=>"User tidak Ditemukan"]);
         }
         $cekUser = UserM::where('username', $req->username)->first();
         if (($cekUser)&&($dataLama->username!=$req->username)) {
@@ -115,13 +115,14 @@ class User extends Controller
           }
           $dataLama = UserM::find($id);
           if (!$dataLama) {
-            return redirect()->to(url("admin.user"))->withErrors(["system"=>"User tidak ditemukan"]);
+            return redirect()->to(url("admin/user"))->withErrors(["system"=>"User tidak Ditemukan"]);
           }
           $cekUser = UserM::where('username', $req->username)->first();
           if (($cekUser)&&($dataLama->username!=$req->username)) {
             return redirect()->back()->withErrors(["username"=>"username sudah ada"]);
           }
           $User=UserM::find($id);
+          
           $User->password=Hash::make($req->password);
           $simpan=$User->save();
           if($simpan){
@@ -132,7 +133,7 @@ class User extends Controller
     public function remove(Request $req,$id){
         $User=UserM::find($id);
         if (!$User) {
-          return redirect()->to(url("admin.user"))->withErrors(["system"=>"User tidak ditemukan"]);
+          return redirect()->to(url("admin/user"))->withErrors(["system"=>"User tidak Ditemukan"]);
         }
         if($User->photo!="man.jpg"){
             if(file_exists(public_path('img'.$User->photo))){

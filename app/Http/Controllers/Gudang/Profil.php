@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Gudang;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class Profil extends Controller
 {
     public function index(){
         $data=UserM::find(session()->get('session_poc'));
-        return view('admin.profil.index',compact('data'));
+        return view('gudang.profil.index',compact('data'));
     }
     public function prosesEditData(Request $req){
       $validator = Validator::make($req->all(),[
@@ -25,7 +25,7 @@ class Profil extends Controller
         }
         $dataLama = UserM::find(session()->get('session_poc'));
         if (!$dataLama) {
-          return redirect()->to(url("admin/profil"))->withErrors(["system"=>"User tidak Ditemukan"]);
+          return redirect()->to(url("gudang/profil"))->withErrors(["system"=>"User tidak Ditemukan"]);
         }
         $cekUser = UserM::where('username', $req->username)->first();
         if (($cekUser)&&($dataLama->username!=$req->username)) {
@@ -49,7 +49,7 @@ class Profil extends Controller
         $simpan=$User->save();
 
         if($simpan){
-          return redirect()->to(url('admin/profil'))->with('success', 'User berhasil diedit');
+          return redirect()->to(url('gudang/profil'))->with('success', 'User berhasil diedit');
         }
         
     }
@@ -65,7 +65,7 @@ class Profil extends Controller
           }
           $dataLama = UserM::find(session()->get('session_poc'));
           if (!$dataLama) {
-            return redirect()->to(url("admin/profil"))->withErrors(["system"=>"User tidak Ditemukan"]);
+            return redirect()->to(url("gudang/profil"))->withErrors(["system"=>"User tidak Ditemukan"]);
           }
           $cekUser = UserM::where('username', $req->username)->first();
           if (($cekUser)&&($dataLama->username!=$req->username)) {
@@ -78,7 +78,7 @@ class Profil extends Controller
           $User->password=Hash::make($req->password);
           $simpan=$User->save();
           if($simpan){
-            return redirect()->to(url('admin/profil'))->with('success', 'Password berhasil diedit');
+            return redirect()->to(url('gudang/profil'))->with('success', 'Password berhasil diedit');
           }
           
       }

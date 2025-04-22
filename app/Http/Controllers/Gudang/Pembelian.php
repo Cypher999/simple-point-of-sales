@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Gudang;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,21 +15,21 @@ class Pembelian extends Controller
           return redirect()->back()->withErrors(["system"=>"barang Tidak Ditemukan"]);
         }
         $data=PembelianM::where('barang_id',$barang_id)->get();
-        return view('admin.pembelian.index',compact('data','barang'));
+        return view('gudang.pembelian.index',compact('data','barang'));
     }
     public function formAdd($barang_id){
         $data=BarangM::select('id','nama')->where('id',$barang_id)->first();
         if(!$data){
           return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
         }
-        return view('admin.pembelian.add',compact('data'));
+        return view('gudang.pembelian.add',compact('data'));
     }
     public function formEdit($id){
       $data=PembelianM::with('barang')->find($id);
       if(!$data){
         return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
       }
-      return view('admin.pembelian.edit',compact('data'));
+      return view('gudang.pembelian.edit',compact('data'));
   }
     public function prosesAdd(Request $req,$barang_id){
         $validator = Validator::make($req->all(),[
@@ -52,7 +52,7 @@ class Pembelian extends Controller
             $barang=BarangM::find($barang_id);
             $barang->stok=$barang->stok+$req->jumlah;
             $barang->save();
-            return redirect()->to(url('admin/pembelian/'.$barang_id))->with('success', 'pembelian berhasil disimpan');
+            return redirect()->to(url('gudang/pembelian/'.$barang_id))->with('success', 'pembelian berhasil disimpan');
           }
           
     }
@@ -76,18 +76,18 @@ class Pembelian extends Controller
           $barang=BarangM::find($pembelian->barang_id);
           $barang->stok=($barang->stok-$jumlah_lama)+$req->jumlah;
           $barang->save();
-          return redirect()->to(url('admin/pembelian/'.$pembelian->barang_id))->with('success', 'pembelian berhasil diedit');
+          return redirect()->to(url('gudang/pembelian/'.$pembelian->barang_id))->with('success', 'pembelian berhasil diedit');
         }
         
     }
     public function remove(Request $req,$id){
         $pembelian=PembelianM::find($id);
         if (!$pembelian) {
-          return redirect()->to(url('admin/pembelian/'.$pembelian->barang_id))->withErrors(["system"=>"data tidak Ditemukan"]);
+          return redirect()->to(url('gudang/pembelian/'.$pembelian->barang_id))->withErrors(["system"=>"data tidak Ditemukan"]);
         }
         $simpan=$pembelian->delete();
         if($simpan){
-          return redirect()->to(url('admin/pembelian/'.$pembelian->barang_id))->with('success', 'pembelian berhasil dihapus');
+          return redirect()->to(url('gudang/pembelian/'.$pembelian->barang_id))->with('success', 'pembelian berhasil dihapus');
         }
         
     }

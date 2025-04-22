@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
-class AdminFilter
+class GudangFilter
 {
     /**
      * Handle an incoming request.
@@ -22,7 +22,7 @@ class AdminFilter
         if(!$user){
             return redirect()->to(url('/'));
         }
-        if($user->role!="superadmin"){
+        if($user->role!="admin gudang"){
             return redirect()->to(url('/'));
         }
         return $next($request);

@@ -23,5 +23,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layout.admin', function ($view) {
             $view->with('user', UserM::find(session()->get('session_poc')));
         });
+        View::composer('layout.gudang', function ($view) {
+            $view->with('user', UserM::find(session()->get('session_poc')));
+        });
+        View::composer('layout.penjualan', function ($view) {
+            $view->with('user', UserM::find(session()->get('session_poc')));
+        });
     }
 }

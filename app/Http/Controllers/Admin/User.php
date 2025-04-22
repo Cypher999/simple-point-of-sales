@@ -59,7 +59,7 @@ class User extends Controller
           }
           $simpan=$User->save();
           if($simpan){
-            return redirect()->to('admin/user')->with('success', 'User berhasil disimpan');
+            return redirect()->to(url('admin/user'))->with('success', 'User berhasil disimpan');
           }
           
     }
@@ -100,7 +100,7 @@ class User extends Controller
         $simpan=$User->save();
 
         if($simpan){
-          return redirect()->to('admin/user')->with('success', 'User berhasil diedit');
+          return redirect()->to(url('admin/user'))->with('success', 'User berhasil diedit');
         }
         
     }
@@ -126,7 +126,7 @@ class User extends Controller
           $User->password=Hash::make($req->password);
           $simpan=$User->save();
           if($simpan){
-            return redirect()->to('admin/user')->with('success', 'Password berhasil diedit');
+            return redirect()->to(url('admin/user'))->with('success', 'Password berhasil diedit');
           }
           
       }
@@ -142,7 +142,7 @@ class User extends Controller
         }
         $simpan=$User->delete();
         if($simpan){
-          return redirect()->to('admin/user')->with('success', 'User berhasil dihapus');
+          return redirect()->to(url('admin/user'))->with('success', 'User berhasil dihapus');
         }
         
     }

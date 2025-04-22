@@ -41,7 +41,7 @@ class Pengeluaran extends Controller
           $pengeluaran->created_at=date('Y-m-d H:i:s');
           $simpan=$pengeluaran->save();
           if($pengeluaran){           
-            return redirect()->to('admin/pengeluaran')->with('success', 'pengeluaran berhasil disimpan');
+            return redirect()->to(url('admin/pengeluaran'))->with('success', 'pengeluaran berhasil disimpan');
           }
           
     }
@@ -64,7 +64,7 @@ class Pengeluaran extends Controller
         $pengeluaran->created_at=date('Y-m-d H:i:s');
         $simpan=$pengeluaran->save();
         if($simpan){
-          return redirect()->to('admin/pengeluaran')->with('success', 'pengeluaran berhasil diedit');
+          return redirect()->to(url('admin/pengeluaran'))->with('success', 'pengeluaran berhasil diedit');
         }
         
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Gudang;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,17 +10,17 @@ class Barang extends Controller
 {
     public function index(){
         $data=BarangM::select('*')->get();
-        return view('admin.barang.index',compact('data'));
+        return view('gudang.barang.index',compact('data'));
     }
     public function formAdd(){
-        return view('admin.barang.add');
+        return view('gudang.barang.add');
     }
     public function formEdit($id){
       $data=BarangM::find($id);
       if(!$data){
         return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
       }
-      return view('admin.barang.edit',compact('data'));
+      return view('gudang.barang.edit',compact('data'));
   }
     public function prosesAdd(Request $req){
         $validator = Validator::make($req->all(),[
@@ -42,7 +42,7 @@ class Barang extends Controller
           $barang->stok=$req->stok;
           $simpan=$barang->save();
           if($simpan){
-            return redirect()->to(url('admin/barang'))->with('success', 'barang berhasil disimpan');
+            return redirect()->to(url('gudang/barang'))->with('success', 'barang berhasil disimpan');
           }
           
     }
@@ -58,7 +58,7 @@ class Barang extends Controller
         }
         $dataLama = BarangM::find($id);
         if (!$dataLama) {
-          return redirect()->to(url("admin.barang"))->withErrors(["system"=>"barang tidak Ditemukan"]);
+          return redirect()->to(url("gudang.barang"))->withErrors(["system"=>"barang tidak Ditemukan"]);
         }
         $cekBarang = BarangM::where('nama', $req->nama)->first();
         if (($cekBarang)&&($dataLama->nama!=$req->nama)) {
@@ -70,19 +70,19 @@ class Barang extends Controller
         $barang->stok=$req->stok;
         $simpan=$barang->save();
         if($simpan){
-          return redirect()->to(url('admin/barang'))->with('success', 'barang berhasil diedit');
+          return redirect()->to(url('gudang/barang'))->with('success', 'barang berhasil diedit');
         }
         
     }
     public function remove(Request $req,$id){
         $barang=BarangM::find($id);
         if (!$barang) {
-          return redirect()->to(url("admin.barang"))->withErrors(["system"=>"barang tidak Ditemukan"]);
+          return redirect()->to(url("gudang.barang"))->withErrors(["system"=>"barang tidak Ditemukan"]);
         }
         
         $simpan=$barang->delete();
         if($simpan){
-          return redirect()->to(url('admin/barang'))->with('success', 'barang berhasil dihapus');
+          return redirect()->to(url('gudang/barang'))->with('success', 'barang berhasil dihapus');
         }
         
     }

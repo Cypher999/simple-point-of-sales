@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Penjualan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,11 +11,11 @@ class Penjualan extends Controller
 {
     public function index(){
         $data=PenjualanM::with('barang')->get();
-        return view('admin.penjualan.index',compact('data'));
+        return view('penjualan.penjualan.index',compact('data'));
     }
     public function formAdd(){
         $barang=BarangM::get();
-        return view('admin.penjualan.add',compact('barang'));
+        return view('penjualan.penjualan.add',compact('barang'));
     }
     public function formEdit($id){
       $data=PenjualanM::with('barang')->find($id);
@@ -23,7 +23,7 @@ class Penjualan extends Controller
       if(!$data){
         return redirect()->back()->withErrors(["system"=>"Data Tidak Ditemukan"]);
       }
-      return view('admin.penjualan.edit',compact('data','barang'));
+      return view('penjualan.penjualan.edit',compact('data','barang'));
   }
     public function prosesAdd(Request $req){
         $validator = Validator::make($req->all(),[
@@ -49,7 +49,7 @@ class Penjualan extends Controller
           if($penjualan){            
             $barang->stok=$barang->stok-$req->jumlah;
             $barang->save();
-            return redirect()->to(url('admin/penjualan'))->with('success', 'penjualan berhasil disimpan');
+            return redirect()->to(url('Penjualan/penjualan'))->with('success', 'penjualan berhasil disimpan');
           }
           
     }
@@ -83,18 +83,18 @@ class Penjualan extends Controller
 
           $barang_baru->stok=($barang_baru->stok-$req->jumlah);
           $barang_baru->save();
-          return redirect()->to(url('admin/penjualan'))->with('success', 'penjualan berhasil diedit');
+          return redirect()->to(url('Penjualan/penjualan'))->with('success', 'penjualan berhasil diedit');
         }
         
     }
     public function remove(Request $req,$id){
         $penjualan=PenjualanM::find($id);
         if (!$penjualan) {
-          return redirect()->to(url("admin/penjualan"))->withErrors(["system"=>"data tidak Ditemukan"]);
+          return redirect()->to(url("Penjualan/penjualan"))->withErrors(["system"=>"data tidak Ditemukan"]);
         }
         $simpan=$penjualan->delete();
         if($simpan){
-          return redirect()->to(url("admin/penjualan"))->with('success', 'penjualan berhasil dihapus');
+          return redirect()->to(url("Penjualan/penjualan"))->with('success', 'penjualan berhasil dihapus');
         }
         
     }
